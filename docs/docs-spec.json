@@ -1,0 +1,271 @@
+{
+    "openapi":"3.0.3",
+    "info": {
+      "title":"API Template",
+      "version":"1.0"
+    },
+    "servers": [
+      {"url":"http://127.0.0.1:5000/api/v1",
+    "description": "dev"}
+    ],
+    "paths": {
+      "/users": {
+        "post": {
+          "tags": [
+            "users"
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "example": "username1"
+                    },
+                    "email": {
+                      "example": "username1@mail.com"
+                    },
+                    "password": {
+                      "example": "@Password1"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": {
+                        "example": "created"
+                      },
+                      "message": {
+                        "example": "user created successfully"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "example": "user-344hweohf64675ed"
+                          },
+                          "username": {
+                            "example": "username1"
+                          },
+                          "email": {
+                            "example": "username1@mail.com"
+                          },
+                          "role": {
+                            "example": "EMPLOYEE"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "description": "success create new user"
+            },
+            "400": {
+              "description": "fail bad request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/badRequest"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "fail unauthorized",
+              "content": {
+                "application/json": {
+                  "schema": {
+                   "$ref": "#/components/schemas/unauthorized"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "fail forbidden",
+              "content": {
+                "application/json": {
+                  "schema": {
+                   "$ref": "#/components/schemas/forbidden"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "error server",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/internalServerError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/authentications": {
+        "post": {
+          "tags": [
+            "authentications"
+          ],
+          "requestBody": {
+            "content": {
+              "application/json" :{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "username":{
+                      "example":"admin1"
+                    },
+                    "password":{
+                      "example": "passwordadmin1"
+                    }
+                  }
+                }
+              }
+          }
+        },
+        "responses": {
+          "201":{
+            "description": "created authentications",
+            "content": {
+              "application/json":{
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status":{
+                      "example":"created"
+                    },
+                    "message":{"example":"authentication has been created succefully"},
+                    "data":{
+                      "type": "object",
+                      "properties": {
+                        "accessToken":{
+                          "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXItRW4tT0RQN1lyZyIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzIxNzYyMjM1LCJleHAiOjE3MjE4NDg2MzV9.9DsENk9idQhV2DI4VfAfHwIG69LsQcPHm6p0yg5DQKk"
+                        },
+                        "refreshToken":{"example":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXItRW4tT0RQN1lyZyIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzIxNzYyMjM1LCJleHAiOjE3MjE4NDg2MzV9.9DsENk9idQhV2DI4VfAfHwIG69LsQcPHm6p0yg5DQKk"},
+                        "user":{
+                          "type": "object",
+                          "properties": {
+                            "id":{
+                              "example": "user-ahedi7etdf7ew"
+                            },
+                            "username":{
+                              "example": "admin1"
+                            },
+                            "email":{
+                              "example": "admin1@mail.com"
+                            },
+                            "role":{
+                              "example": "ADMIN"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401":{
+            "description": "fail authentication",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "$ref": "#/components/schemas/unauthorized"
+                }
+              }
+            }
+          },
+          "500":{
+            "description": "error",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "$ref": "#/components/schemas/internalServerError"
+                }
+              }
+            }
+          }
+        }
+      }
+      }
+    },
+    "components": {
+      "schemas": {
+        "badRequest": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "example": "fail"
+            },
+            "message": {
+              "example": "invalid payload"
+            }
+          }
+        },
+        "unauthorized":{
+          "type": "object",
+                    "properties": {
+                      "status": {
+                        "example": "fail"
+                      },
+                      "message": {
+                        "example": "unauthorized"
+                      }
+                    }
+        },
+        "forbidden":{
+          "type": "object",
+                    "properties": {
+                      "status": {
+                        "example": "fail"
+                      },
+                      "message": {
+                        "example": "forbidden"
+                      }
+                    }
+        },
+        "notFound":{
+          "type": "object",
+                    "properties": {
+                      "status": {
+                        "example": "fail"
+                      },
+                      "message": {
+                        "example": "not found"
+                      }
+                    }
+        },
+        "internalServerError":{
+          "type": "object",
+                    "properties": {
+                      "status": {
+                        "example": "error"
+                      },
+                      "message": {
+                        "example": "internal server error"
+                      }
+                    }
+        }
+      },
+      "securitySchemes": {
+        "wintendanceAuth": {
+          "type": "http",
+          "scheme": "bearer"
+        }
+      }
+    }
+  }

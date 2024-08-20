@@ -1,0 +1,51 @@
+{
+  "name": "template-express-mvc",
+  "version": "1.0.0",
+  "description": "express template mvc",
+  "main": "src/app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --setupFiles -i",
+    "prisma": "npx prisma init",
+    "migrate:up": "npx prisma migrate dev",
+    "migrate:create-only": "npx prisma migrate dev --create-only",
+    "linit": "npm init @eslint/config@latest",
+    "lint": "npx eslint src/",
+    "lint:fix": "npx eslint src/ --fix"
+  },
+  "keywords": [],
+  "author": "misno sugianto",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.17.0",
+    "auto-bind": "^5.0.1",
+    "bcrypt": "^5.1.1",
+    "cloudinary": "^2.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "nanoid": "^5.0.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
+    "@types/morgan": "^1.9.9",
+    "@types/supertest": "^6.0.2",
+    "babel-jest": "^29.7.0",
+    "eslint": "^9.9.0",
+    "globals": "^15.9.0",
+    "jest": "^29.7.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.4",
+    "prisma": "^5.17.0",
+    "supertest": "^7.0.0"
+  }
+}
